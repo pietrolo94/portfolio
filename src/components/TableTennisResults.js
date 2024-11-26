@@ -63,19 +63,19 @@ const TableTennisResults = () => {
           </p>
         ) : results.length > 1 ? (
           <div className="overflow-x-auto">
-            <table className="table-auto w-full border-collapse border border-gray-300 dark:border-gray-700 text-sm text-left">
+            <table className="min-w-full table-auto border-collapse border border-gray-300 dark:border-gray-700 text-sm text-left rounded-lg shadow-lg">
               <thead>
-                <tr className="bg-indigo-100 dark:bg-gray-700">
-                  <th className="border border-gray-300 dark:border-gray-700 px-4 py-2">
+                <tr className="bg-indigo-600 dark:bg-gray-700 text-white">
+                  <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
                     Giornata
                   </th>
-                  <th className="border border-gray-300 dark:border-gray-700 px-4 py-2">
+                  <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
                     Atleta 1
                   </th>
-                  <th className="border border-gray-300 dark:border-gray-700 px-4 py-2">
+                  <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
                     Atleta 2
                   </th>
-                  <th className="border border-gray-300 dark:border-gray-700 px-4 py-2">
+                  <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
                     Risultato
                   </th>
                 </tr>
@@ -84,11 +84,11 @@ const TableTennisResults = () => {
                 {results.map((row, index) => (
                   <tr
                     key={index}
-                    className={
+                    className={`${
                       index % 2 === 0
                         ? "bg-white dark:bg-gray-800"
                         : "bg-gray-100 dark:bg-gray-700"
-                    }
+                    } hover:bg-indigo-100 dark:hover:bg-indigo-600`}
                   >
                     {row.map((cell, cellIndex) => (
                       <td
