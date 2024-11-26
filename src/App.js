@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from "@vercel/analytics/react"; // Importa Analytics
 import MainLayout from './components/MainLayout';
 import SimpleLayout from './components/SimpleLayout';
 import TableTennisResults from './components/TableTennisResults';
@@ -9,11 +10,12 @@ import Bitcoin from './components/Bitcoin';
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          {/* Le rotte principali */}
-        </Route>
+      {/* Aggiungi il componente Analytics qui */}
+      <Analytics /> {/* Questo traccerà le visite alle pagine */}
 
+      <Routes>
+        <Route path="/" element={<MainLayout />} />
+        
         {/* Rotte per le pagine secondarie */}
         <Route path="/table-tennis-results" element={<SimpleLayout />}>
           <Route index element={<TableTennisResults />} />
@@ -30,6 +32,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
