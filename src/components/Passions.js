@@ -25,7 +25,7 @@ const Passions = () => {
               to="/table-tennis-results" // Il link alla pagina dei risultati
               className="text-blue-600 dark:text-blue-400 hover:underline"
             >
-              View My Results
+              Check My Latest Results
             </Link>
           </div>
 
@@ -54,7 +54,7 @@ const Passions = () => {
               Bitcoin
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              I'm passionate about Bitcoin and the future of digital currencies.
+              I'm passionate about Bitcoin and the future of digital currencies and blockchain technology.
             </p>
             <Link
               to="/bitcoin" // Link alla pagina su Bitcoin

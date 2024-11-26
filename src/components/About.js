@@ -100,7 +100,8 @@ const About = () => {
             I have a diverse professional journey, ranging from lifeguard and
             swim instructor roles to data analysis. My academic background
             includes studies in computer engineering and certification in data
-            analysis.
+            analysis. I also had the enriching experience of living in Ireland for almost two years, 
+            which enhanced my adaptability and cultural awareness.
           </p>
           <p className="mb-6 text-gray-600 dark:text-gray-400 leading-relaxed">
             Currently, I am a Data Analyst at{" "}

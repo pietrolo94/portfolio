@@ -14,7 +14,7 @@ const Contact = () => {
 
         {/* Descrizione */}
         <p className="mb-6 text-gray-600 dark:text-gray-400">
-          Feel free to reach out for collaborations or just a friendly chat.
+        Feel free to reach out for collaborations or just a friendly chat 😊.
         </p>
 
         {/* Pulsante per Email */}

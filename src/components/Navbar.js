@@ -3,15 +3,21 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    // Recupera il tema salvato o usa dark come predefinito
+    return localStorage.getItem('theme') === 'light' ? false : true;
+  });
+
   const navigate = useNavigate(); // Hook per navigare tra le pagine
   const location = useLocation(); // Hook per controllare la posizione attuale
 
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark'); // Salva il tema in localStorage
     } else {
       document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light'); // Salva il tema in localStorage
     }
   }, [darkMode]);
 
@@ -30,12 +36,19 @@ const Navbar = () => {
       }
     }, 100);
   };
+  const scrollToHero = () => {
+    const heroSection = document.getElementById('hero');
+    if (heroSection) {
+      heroSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav className="bg-white dark:bg-gray-800 shadow-md fixed top-0 left-0 w-full z-20">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {/* Logo */}
-        <h1 className="text-2xl font-bold text-indigo-600 dark:text-indigo-300">
+        <h1 className="text-2xl font-bold text-indigo-600 dark:text-indigo-300 cursor-pointer"
+        onClick={scrollToHero}>
           My Portfolio
         </h1>
 
@@ -81,7 +94,7 @@ const Navbar = () => {
           {/* Dark Mode Toggle */}
           <li className="py-2 md:py-0">
             <button
-              onClick={() => setDarkMode(!darkMode)}
+              onClick={() => setDarkMode(!darkMode)} // Cambia il tema
               className="px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-500"
             >
               {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}

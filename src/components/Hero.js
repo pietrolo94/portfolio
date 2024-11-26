@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="relative h-screen text-gray-800 dark:text-gray-200 flex items-center justify-center overflow-hidden pt-24">
+    <section id="hero" className="relative h-screen text-gray-800 dark:text-gray-200 flex items-center justify-center overflow-hidden pt-24">
       {/* Background Animation */}
       <motion.svg
         className="absolute inset-0 w-full h-full"

@@ -61,7 +61,7 @@ const Trekking = () => {
     <section className="min-h-screen flex flex-col justify-between py-16 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-8 text-indigo-600 dark:text-indigo-400">
-          Le mie Avventure di Trekking
+        My Trekking Adventures
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {trekkingData.map((trek, index) => (
