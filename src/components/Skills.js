@@ -1,24 +1,38 @@
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { FaPython, FaReact } from "react-icons/fa";
 import { SiPowerbi } from "react-icons/si";
 
 const Skills = () => {
+  // Creo il ref per il componente Hero
+  const heroRef = useRef(null);
+
+  // Funzione per scrollare fino a Hero
+  const scrollToHero = () => {
+    heroRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const skills = [
     {
       name: "Python",
       icon: <FaPython className="text-5xl text-yellow-500 dark:text-yellow-400" />,
       description: "Expertise in scripting, data analysis, and web development.",
+      link: "/streamlit",
+      buttonText: "Explore ML App",
     },
     {
       name: "Power BI",
       icon: <SiPowerbi className="text-5xl text-yellow-600 dark:text-yellow-500" />,
       description: "Creating interactive dashboards and insightful reports.",
+      link: "/powerbi",
+      buttonText: "View Power BI Dashboard",
     },
     {
       name: "React",
       icon: <FaReact className="text-5xl text-blue-400 dark:text-blue-300" />,
       description: "Building dynamic and responsive web applications.",
+      // Rimosso il pulsante
+      onClick: scrollToHero, // Cliccando sulla scheda si scrollerà verso Hero
     },
   ];
 
@@ -44,7 +58,7 @@ const Skills = () => {
             <motion.div
               key={index}
               className="p-6 rounded-lg shadow-lg bg-gradient-to-r from-indigo-100 to-purple-100 
-              dark:from-gray-700 dark:to-gray-800 hover:shadow-2xl transition transform hover:-translate-y-1"
+                   dark:from-gray-700 dark:to-gray-800 hover:shadow-2xl transition transform hover:-translate-y-1"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{
@@ -52,6 +66,7 @@ const Skills = () => {
                 delay: index * 0.2,
               }}
               viewport={{ once: true }}
+              onClick={skill.onClick} // Aggiungi l'onClick per il React
             >
               <div className="flex justify-center mb-4">{skill.icon}</div>
               <h3 className="text-xl font-bold text-indigo-600 dark:text-indigo-400 text-center mb-2">
@@ -60,6 +75,14 @@ const Skills = () => {
               <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
                 {skill.description}
               </p>
+              {skill.link && (
+                <a
+                  href={skill.link}
+                  className="block text-center mt-4 text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-600"
+                >
+                  {skill.buttonText}
+                </a>
+              )}
             </motion.div>
           ))}
         </div>
@@ -69,4 +92,3 @@ const Skills = () => {
 };
 
 export default Skills;
-

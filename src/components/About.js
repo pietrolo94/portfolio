@@ -106,7 +106,7 @@ const About = () => {
           <p className="mb-6 text-gray-600 dark:text-gray-400 leading-relaxed">
             Currently, I am a Data Analyst at{" "}
             <a
-              href="https://www.dilaxia.com/" // Sostituisci con il link corretto
+              href="https://www.dilaxia.com/" 
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 underline"

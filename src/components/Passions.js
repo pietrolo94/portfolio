@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Importa Link da React Router
+import { Link } from "react-router-dom"; 
 import { FaTableTennis, FaMountain, FaBitcoin } from "react-icons/fa";
 
 const Passions = () => {
@@ -22,7 +22,7 @@ const Passions = () => {
               and regional tournaments.
             </p>
             <Link
-              to="/table-tennis-results" // Il link alla pagina dei risultati
+              to="/table-tennis-results" 
               className="text-blue-600 dark:text-blue-400 hover:underline"
             >
               Check My Latest Results
@@ -40,7 +40,7 @@ const Passions = () => {
               favorite pastimes.
             </p>
             <Link
-              to="/trekking" // Link alla pagina sul trekking
+              to="/trekking" 
               className="text-green-600 dark:text-green-400 hover:underline"
             >
               Discover My Recent Adventures
@@ -57,7 +57,7 @@ const Passions = () => {
               I'm passionate about Bitcoin and the future of digital currencies and blockchain technology.
             </p>
             <Link
-              to="/bitcoin" // Link alla pagina su Bitcoin
+              to="/bitcoin" 
               className="text-yellow-600 dark:text-yellow-400 hover:underline"
             >
               Learn More About Bitcoin

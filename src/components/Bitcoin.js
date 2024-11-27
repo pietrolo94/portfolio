@@ -13,7 +13,6 @@ const Bitcoin = () => {
         );
         const data = await response.json();
 
-        // Extract data for chart
         const labels = data.prices.map((price) =>
           new Date(price[0]).toLocaleDateString()
         );

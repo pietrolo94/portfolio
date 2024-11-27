@@ -6,6 +6,8 @@ import SimpleLayout from './components/SimpleLayout';
 import TableTennisResults from './components/TableTennisResults';
 import Trekking from './components/Trekking';
 import Bitcoin from './components/Bitcoin';
+import StreamlitEmbed from './components/StreamlitEmbed';
+import PowerBiEmbed from './components/PowerBiEmbed';  // Importa il componente PowerBIEmbed
 
 function App() {
   return (
@@ -22,6 +24,12 @@ function App() {
           <Route path="/bitcoin" element={<SimpleLayout />}>
             <Route index element={<Bitcoin />} />
           </Route>
+          <Route path="/streamlit" element={<SimpleLayout />}>
+            <Route index element={<StreamlitEmbed />} />
+          </Route>
+          <Route path="/powerbi" element={<SimpleLayout />}>
+            <Route index element={<PowerBiEmbed />} />
+          </Route>
         </Routes>
       </Router>
     </ThemeProvider>
@@ -29,7 +37,6 @@ function App() {
 }
 
 export default App;
-
 
 
 

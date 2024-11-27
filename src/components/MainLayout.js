@@ -13,7 +13,6 @@ const MainLayout = () => {
     <div className="flex flex-col min-h-screen bg-gray-100 text-gray-900">
       <Navbar />
       <Hero />
-      {/* Ancora per la sezione About */}
       <div id="about">
         <About />
       </div>

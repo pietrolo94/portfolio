@@ -19,7 +19,7 @@ const Layout = () => {
       <Passions />
       <Contact />
       <div className="container mx-auto px-4 py-8">
-        <Outlet /> {/* Qui carica le pagine secondarie */}
+        <Outlet /> 
       </div>
       <Footer />
     </div>
