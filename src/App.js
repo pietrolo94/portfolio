@@ -1,18 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ThemeProvider from './components/ThemeContext'; // Importa il provider
+import ThemeProvider from './components/ThemeContext'; 
 import MainLayout from './components/MainLayout';
 import SimpleLayout from './components/SimpleLayout';
 import TableTennisResults from './components/TableTennisResults';
 import Trekking from './components/Trekking';
 import Bitcoin from './components/Bitcoin';
 import StreamlitEmbed from './components/StreamlitEmbed';
-import PowerBiEmbed from './components/PowerBiEmbed';  // Importa il componente PowerBIEmbed
+import PowerBiEmbed from './components/PowerBiEmbed';  
+import { Analytics } from '@vercel/analytics/react';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <ThemeProvider>
       <Router>
+      <ScrollToTop />
         <Routes>
           <Route path="/" element={<MainLayout />} />
           <Route path="/table-tennis-results" element={<SimpleLayout />}>
@@ -31,6 +34,7 @@ function App() {
             <Route index element={<PowerBiEmbed />} />
           </Route>
         </Routes>
+        <Analytics />
       </Router>
     </ThemeProvider>
   );
