@@ -1,16 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { FaPython, FaReact } from "react-icons/fa";
 import { SiPowerbi } from "react-icons/si";
 
 const Skills = () => {
-  // Creo il ref per il componente Hero
-  const heroRef = useRef(null);
-
-  // Funzione per scrollare fino a Hero
-  const scrollToHero = () => {
-    heroRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
 
   const skills = [
     {
@@ -31,8 +24,8 @@ const Skills = () => {
       name: "React",
       icon: <FaReact className="text-5xl text-blue-400 dark:text-blue-300" />,
       description: "Building dynamic and responsive web applications.",
-      // Rimosso il pulsante
-      onClick: scrollToHero, // Cliccando sulla scheda si scrollerà verso Hero
+      link: "/login",
+      buttonText: "Log in to private area",
     },
   ];
 

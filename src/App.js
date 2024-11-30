@@ -10,7 +10,8 @@ import StreamlitEmbed from './components/StreamlitEmbed';
 import PowerBiEmbed from './components/PowerBiEmbed';  
 import { Analytics } from '@vercel/analytics/react';
 import ScrollToTop from './components/ScrollToTop';
-
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
 function App() {
   return (
     <ThemeProvider>
@@ -32,6 +33,12 @@ function App() {
           </Route>
           <Route path="/powerbi" element={<SimpleLayout />}>
             <Route index element={<PowerBiEmbed />} />
+          </Route>
+          <Route path="/login" element={<SimpleLayout />}>
+            <Route index element={<Login />} />
+          </Route>
+          <Route path="/dashboard" element={<SimpleLayout />}>
+            <Route index element={<Dashboard />} />
           </Route>
         </Routes>
         <Analytics />
