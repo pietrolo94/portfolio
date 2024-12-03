@@ -7,12 +7,12 @@ const TableTennisResults = () => {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        // Usa la variabile d'ambiente per il proxy
         const proxyUrl = process.env.REACT_APP_API_PROXY_URL;
-        const apiUrl = `https://portale.fitet.org/risultati/incontri_atleta_acc.php?ATLETA=810613`;
-        
+        if (!proxyUrl) {
+          console.error("La variabile d'ambiente non è configurata correttamente");
+        }
+        const apiUrl = "https://portale.fitet.org/risultati/incontri_atleta_acc.php?ATLETA=810613";
         const response = await fetch(`${proxyUrl}${apiUrl}`);
-        
         const text = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, "text/html");
