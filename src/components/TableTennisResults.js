@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const TableTennisResults = () => {
   const [results, setResults] = useState([]);
@@ -7,46 +7,18 @@ const TableTennisResults = () => {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const proxyUrl = process.env.REACT_APP_API_PROXY_URL;
-        if (!proxyUrl) {
-          console.error("La variabile d'ambiente non è configurata correttamente");
+        const apiUrl = "https://fast-api-backend-20ez.onrender.com/dati_atleta";
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (data && data.incontri) {
+          setResults(data.incontri);
+        } else {
+          console.error("Dati non validi ricevuti");
         }
-        const apiUrl = "https://portale.fitet.org/risultati/incontri_atleta_acc.php?ATLETA=810613";
-        const response = await fetch(`${proxyUrl}${apiUrl}`);
-        const text = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, "text/html");
-        const rows = Array.from(doc.querySelectorAll("table tr"));
-
-        const data = rows.map((row) => {
-          const cells = Array.from(row.querySelectorAll("td")).map((cell) =>
-            cell.textContent.trim()
-          );
-          return cells.slice(1);
-        });
-
-        const adjustedResults = data.map((row) => {
-          if (row.length > 3) {
-            row[3] = `${row[3]}  ${row[4]}`;
-            row.splice(4, 1);
-          }
-          return row;
-        });
-
-        const filteredResults = adjustedResults.map((row) =>
-          row.filter((cell) => cell !== "")
-        );
-
-        const nonEmptyResults = filteredResults.filter(
-          (row) =>
-            row.length > 0 &&
-            !row.some((cell) => cell.includes("valido per la classifica"))
-        );
-
-        setResults(nonEmptyResults);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching results:", error);
+        console.error("Errore nel recuperare i risultati:", error);
         setLoading(false);
       }
     };
@@ -56,80 +28,75 @@ const TableTennisResults = () => {
 
   return (
     <section className="min-h-screen flex flex-col justify-between py-16 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-200 mb-0">
-  <div className="container mx-auto px-4">
-    <h2 className="text-3xl font-bold text-center mb-8 text-indigo-600 dark:text-indigo-400">
-      My Table Tennis Results
-    </h2>
-    {loading ? (
-      <p className="text-center text-gray-600 dark:text-gray-400">
-        Loading results...
-      </p>
-    ) : results.length > 1 ? (
-      <>
-        <div className="overflow-x-auto">
-          <table className="min-w-full table-auto border-collapse border border-gray-300 dark:border-gray-700 text-sm text-left rounded-lg shadow-lg">
-            <thead>
-              <tr className="bg-indigo-600 dark:bg-gray-700 text-white">
-                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
-                  Giornata
-                </th>
-                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
-                  Atleta 1
-                </th>
-                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
-                  Atleta 2
-                </th>
-                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
-                  Risultato
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {results.map((row, index) => (
-                <tr
-                  key={index}
-                  className={`${
-                    index % 2 === 0
-                      ? "bg-white dark:bg-gray-800"
-                      : "bg-gray-100 dark:bg-gray-700"
-                  } hover:bg-indigo-100 dark:hover:bg-indigo-600`}
-                >
-                  {row.map((cell, cellIndex) => (
-                    <td
-                      key={cellIndex}
-                      className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-gray-800 dark:text-gray-200"
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-8 text-indigo-600 dark:text-indigo-400">
+          My Table Tennis Results
+        </h2>
+        {loading ? (
+          <p className="text-center text-gray-600 dark:text-gray-400">
+            Loading results...
+          </p>
+        ) : results.length > 0 ? (
+          <>
+            <div className="overflow-x-auto">
+              <table className="min-w-full table-auto border-collapse border border-gray-300 dark:border-gray-700 text-sm text-left rounded-lg shadow-lg">
+                <thead>
+                  <tr className="bg-indigo-600 dark:bg-gray-700 text-white">
+                    <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
+                      Giornata
+                    </th>
+                    <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
+                      Atleta 1
+                    </th>
+                    <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
+                      Atleta 2
+                    </th>
+                    <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider">
+                      Risultato
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {results.map((row, index) => (
+                    <tr
+                      key={index}
+                      className={`${
+                        index % 2 === 0
+                          ? "bg-white dark:bg-gray-800"
+                          : "bg-gray-100 dark:bg-gray-700"
+                      } hover:bg-indigo-100 dark:hover:bg-indigo-600`}
                     >
-                      {cell}
-                    </td>
+                      <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">
+                        {row.Giornata}
+                      </td>
+                      <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">
+                        {row.Atleta1}
+                      </td>
+                      <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">
+                        {row.Atleta2}
+                      </td>
+                      <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 flex items-center space-x-2">
+                        <span>{row.Risultato}</span>
+                        <img
+                          src={row.Immagine}
+                          alt="Risultato"
+                          className="w-4 h-4" // Immagine ancora più piccola
+                        />
+                      </td>
+                    </tr>
                   ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        {/* Aggiunta del link al sito originale */}
-        <p className="mt-6 text-center text-gray-600 dark:text-gray-400">
-          For more information, visit the original source on the{" "}
-          <a
-            href="https://portale.fitet.org/risultati/incontri_atleta_acc.php?ATLETA=810613"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-indigo-600 underline dark:text-indigo-400"
-          >
-            FITeT website
-          </a>
-          .
-        </p>
-      </>
-    ) : (
-      <p className="text-center text-gray-600 dark:text-gray-400">
-        No results available at the moment.
-      </p>
-    )}
-  </div>
-</section>
+                </tbody>
+              </table>
+            </div>
+          </>
+        ) : (
+          <p className="text-center text-gray-600 dark:text-gray-400">
+            No results available at the moment.
+          </p>
+        )}
+      </div>
+    </section>
   );
 };
 
 export default TableTennisResults;
-
