@@ -7,10 +7,11 @@ const TableTennisResults = () => {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const response = await fetch(
-          `https://thingproxy.freeboard.io/fetch/https://portale.fitet.org/risultati/incontri_atleta_acc.php?ATLETA=810613`
-        );
+        // Usa la variabile d'ambiente per il proxy
+        const proxyUrl = process.env.REACT_APP_API_PROXY_URL;
+        const apiUrl = `https://portale.fitet.org/risultati/incontri_atleta_acc.php?ATLETA=810613`;
         
+        const response = await fetch(`${proxyUrl}${apiUrl}`);
         
         const text = await response.text();
         const parser = new DOMParser();
