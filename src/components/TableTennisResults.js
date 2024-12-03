@@ -8,8 +8,10 @@ const TableTennisResults = () => {
     const fetchResults = async () => {
       try {
         const response = await fetch(
-          "https://corsproxy.io/?https://portale.fitet.org/risultati/incontri_atleta_acc.php?ATLETA=810613"
+          `https://thingproxy.freeboard.io/fetch/https://portale.fitet.org/risultati/incontri_atleta_acc.php?ATLETA=810613`
         );
+        
+        
         const text = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, "text/html");
