@@ -95,6 +95,23 @@ const TableTennisResults = () => {
           </p>
         )}
       </div>
+
+      {/* Aggiungi il link al sito ufficiale */}
+      <footer className="bg-gray-100 dark:bg-gray-800 py-4 mt-8">
+        <div className="container mx-auto text-center">
+          <p className="text-gray-600 dark:text-gray-400">
+            For more details, visit the official FITeT website:{" "}
+            <a
+              href="https://portale.fitet.org/risultati/new_rank/dettaglioatleta.php?ATLETA=810613&ZU=0&AVVERSARIO=0&ID_CLASS=224#fragment-1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-600 dark:text-indigo-400 underline"
+            >
+              FITeT Official Website
+            </a>
+          </p>
+        </div>
+      </footer>
     </section>
   );
 };
